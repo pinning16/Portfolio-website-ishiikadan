@@ -1,0 +1,736 @@
+@charset "utf-8";
+
+// mixin ブレイクポイント；900,1420
+$tab:900px;
+$pc:1420px;
+
+@mixin tab  {
+    @media (min-width:($tab))  {
+        @content;
+    }
+}
+@mixin pc  {
+    @media (min-width:($pc))  {
+        @content;
+    }
+}
+
+// 変数
+// カラー
+$color-white: #FFFFFF;
+$color-black: #000000;
+$color-gold: #978F10;
+
+/* --------------------------------------------------------
+    共通パーツ
+  -------------------------------------------------------- */
+  body{
+    font-family: “Times New Roman”, “游明朝”, “Yu Mincho”, “游明朝体”, “YuMincho”, “ヒラギノ明朝 Pro W3”, “Hiragino Mincho Pro”, “HiraMinProN-W3”, “HGS明朝E”, “ＭＳ Ｐ明朝”, “MS PMincho”, serif;
+}
+.container{
+    max-width: 1180px;
+    margin: 0 auto;
+    width: 100%;
+    @include pc{
+    }
+}
+.section{
+    &__contain{
+        text-align: center;
+    }
+    &__icon{
+        margin-bottom: 20px;
+    }
+    &__title{
+        font-size: 34px;
+        line-height: 30px;
+        @include pc{
+            font-size: 36px;
+            line-height: 32px;
+        }
+    }
+}
+/* --------------------------------------------------------
+  各セクションのCSS
+  -------------------------------------------------------- */
+// start header
+.header{
+    width: 100%;
+    &__container{
+        position: fixed;/* bodyに対しての絶対位置指定 */
+        top: 0;
+        z-index: 999;
+        width: 100%;
+        background-color: $color-white;
+    }
+    &__inner{
+        max-width: 1920px;
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;// 文字真ん中
+        height: 75px;
+        padding: 0 20px;
+        @include pc{
+            height: 85px;
+        }
+    }
+    &__left{
+        transition: all 1s ease;
+        // 1秒かけて要数を変化
+
+        &:hover{
+            opacity: 0.5;
+        }
+    }
+    &__title{
+        font-size: 30px;
+        font-weight: bold;
+        color: $color-black;
+        line-height: 45px;
+        letter-spacing: 0.3em;
+        padding-left: 10px;
+        @include tab{
+            padding: 0 120px 0 10px;
+            font-size: 34px;
+        }
+    }
+    &__link{
+        display: flex;
+    }
+    &__right{
+        display: none;
+        @include tab{
+            display: flex;
+            font-size: 20px;
+            color: $color-black;
+            line-height: 40px;
+            margin-right: auto;
+            // nav左寄せ
+        }
+        @include pc{
+            display: flex;
+            font-size: 24px;
+            color: $color-black;
+            line-height: 45px;
+            margin-right: auto;
+            // nav左寄せ
+        }
+    }
+    &__item{
+        &-link{
+            transition: all 1s ease;
+        }
+        &-link:hover{
+            opacity: 0.5;
+        }
+
+        &:nth-child(2){
+            margin: 0 30px;
+        }
+    }
+    &__list{
+        display: flex;
+    }
+    &__btn{
+        display: none;
+        @include tab{
+            display: flex;
+            width: 170px;
+            height: 54px;
+            font-size: 20px;
+            background-color: $color-gold;
+            color: $color-white;
+            align-items: center;
+            // icon真ん中
+            border-radius: 5px;
+            transition: all 1s ease;
+            // 0.5秒かけて要数を変化
+            &:hover{
+                filter:alpha(opacity=70);
+                -ms-filter: "alpha(opacity=50)";
+                opacity:0.7;
+            }
+        }
+        &-img{
+            margin-bottom: 16px;
+            margin-right: 10px;
+        }
+        &-link{
+            display: block;
+            width: 170px;
+            height: 54px;
+            line-height: 54px;
+            text-align: center;
+        }
+    }
+}
+// ハンバーガーメニュー
+.sp-nav{
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    background-image: url(../../img/hp/bg/bg3.jpg);
+    text-align: center;
+    // 彈出視窗從左
+    transform: translateX(-100%);
+    transition: all 0.6s;
+    width: 100%;
+    height: 100%;
+    &__list {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;// sp-nav 垂直
+        justify-content: center;// sp-nav 垂直中央
+    }
+    &__item {
+        font-size: 20px;
+        color: $color-black;
+        text-shadow: 0 0 0.2em $color-white, 0 0 0.2em $color-white;
+        margin-bottom: 50px;
+    }
+    &__link{
+        display: block;
+
+        &:hover{
+        transform: scale(1.25);
+        }
+    }
+}
+
+/* このクラスを、jQueryで付与・削除する */
+.sp-nav.active {
+    transform: translateX(0%);
+}
+.navToggle {
+    @include tab{
+        display: none;
+    }
+        display: block;
+    position: absolute;
+    /* bodyに対しての絶対位置指定 */
+    right: 15px;
+    top: 20px;
+    margin-top: 8px;
+    // pointer 範囲設定
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    z-index: 3;
+    &__span {
+        display: block;
+        position: absolute;    /* .navToggleに対して */
+        width: 25px;
+        border-bottom: solid 2px  $color-black;
+        -webkit-transition: .35s ease-in-out;
+        -moz-transition: .35s ease-in-out;
+        transition: .35s ease-in-out;
+        left: 0px;
+        &:nth-child(1) {
+            top: 0px;
+        }
+        &:nth-child(2) {
+            top: 8px;
+        }
+        &:nth-child(3) {
+            top: 16px;
+        }
+
+}
+}
+/* 最初のspanをマイナス45度に */
+.navToggle.active span{
+// Xの時色を黒くになる
+    border-bottom: solid 3px  $color-black;
+    &:nth-child(1){
+        top: 8px;
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+/* 2番目と3番目のspanを45度に */
+    &:nth-child(2),&:nth-child(3){
+        top: 8px;
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+}
+// end ハンバーガーメニュー
+// end header
+// start mv
+.mv{
+    // max-width: 1920px;
+    width: 100%;
+    margin: 75px auto 0;
+    height: 500px;
+    background-image: url(../../img/cook/bg/menu-header.png);
+      // Retina対応
+    @media screen and (-webkit-min-device-pixel-ratio:2),
+    (min-resolution: 2dppx) {
+        & {
+        background-image:url(../../img/cook/bg/menu-header@2x.png);
+        }
+    }
+    @include pc{
+        margin: 85px auto 0;
+    }
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    &__title{
+        font-size: 34px;
+        line-height: 42px;
+        color: $color-white;
+        // 真ん中設置
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+    }
+    &__btn{
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 99;
+        text-align: center;
+        &-link{
+            display: block;
+            width: 115px;
+            height: 40px;
+            border: 3px solid $color-white;
+            background-color:rgba($color-white,.2);
+            transition: all 0.5s ease;
+            // 1秒かけて要数を変化
+            &:hover{
+            filter:alpha(opacity=50);
+            -ms-filter: "alpha(opacity=50)";
+            opacity:0.5;
+            transform: scale(.9, .9);
+            }
+    }
+    &-text{
+        font-size: 16px;
+        color: $color-white;
+    }
+        @include tab{
+            display: none;
+        }
+    }
+
+}
+// end mv
+// start about
+.about{
+    // max-width: 1920px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px 20px;
+    &__map{
+        margin: 36px 0 98px;
+        &-link{
+            font-size: 16px;
+            line-height: 32px;
+            &:hover{
+                color: purple;
+            }
+        }
+        &-span{
+            margin: 0 10px;
+        }
+    }
+    &__title{
+        text-align: center;
+        font-size: 16px;
+        line-height: 32px;
+        margin-bottom: 120px;
+        @include pc{
+            margin-bottom: 200px;
+        }
+    }
+    &__item{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 100px;
+        @include tab{
+            flex-direction: row;
+            margin-bottom: 141px;
+            &:nth-of-type(2){
+                    flex-direction: row-reverse;
+                }
+            }
+        }
+
+        &__contain{
+            max-width: 525px;
+            width: 100%;
+            background-image: url(../../img/hp/bg/bg.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding: 30px;
+            margin: 0 auto;
+            @include tab{
+                max-width: 813px;
+                width: 100%;
+                margin: 0;
+                margin-top: 30px;
+                padding: 2em 4em 2em 11em;
+            }
+            @include pc{
+                max-width: 813px;
+                width: 100%;
+                margin: 0;
+                margin-top: 30px;
+                padding: 2em 5em 2em 12em;
+            }
+        &-right{
+            max-width: 525px;
+            width: 100%;
+            background-image: url(../../img/hp/bg/bg.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding: 30px;
+            margin: 0 auto;
+            @include tab{
+                max-width: 813px;
+                width: 100%;
+                margin: 0;
+                margin-top: 30px;
+                padding: 2em 11em 2em 4em;
+            }
+            @include pc{
+                max-width: 813px;
+                width: 100%;
+                margin: 0;
+                margin-top: 30px;
+                padding: 2em 12em 2em 5em;
+            }
+        }
+    }
+    &__photo{
+        text-align: center;
+        // sp画像中央置き
+        @include tab{
+            text-align: initial;
+            max-width: 525px;
+            width: 100%;
+            height: auto;
+            margin-top: -5%;
+            margin-right: -10%;
+            z-index: 99;
+        }
+        &-right{
+            text-align: center;
+            @include tab{
+                text-align: initial;
+                max-width: 525px;
+                width: 100%;
+                height: auto;
+                margin-top: -5%;
+                margin-left: -10%;
+                z-index: 99;
+            }
+        }
+    }
+    &__img{
+        max-width: 525px;
+        width: 100%;
+        height: auto;
+    }
+    &__top{
+        font-size: 24px;
+        line-height: 32px;
+    }
+    &__text{
+        font-size: 14px;
+        line-height: 2em;
+        margin: 3em 0;
+        & br{
+            @include tab{
+                display: none;
+                // br無効
+            }
+        }
+        & br{
+            @include pc{
+                display: inline;
+                // br有効
+            }
+        }
+        @include pc{
+            font-size: 16px;
+            line-height: 2em;
+            margin: 3em 0;
+        }
+    }
+    &__add{
+        font-size: 14px;
+        line-height: 21px;
+    }
+}
+// end about
+// start footer
+.footer{
+    // max-width: 1920px;
+    width: 100%;
+    margin: 0 auto;
+    background-image: url(../../img/hp/bg/bg3.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    &__wrapper{
+        padding-top: 85px;
+    }
+    &__list{
+        -ms-writing-mode: tb-rl;
+        writing-mode: vertical-rl;
+        margin: 0 auto;
+    }
+    &__item{
+        font-size: 18px;
+        line-height: 32px;
+        letter-spacing: 13px;
+        &:nth-child(2){
+            margin: 0 34px;
+        }
+        &-link{
+            transition: all 1s ease;
+            }
+        &-link:hover{
+            color: $color-gold;
+        }
+    }
+    &__contact{
+        margin: 96px 0 61px;
+        text-align: center;
+
+    }
+    &__logo{
+        font-size: 32px;
+        margin-bottom: 72px;
+        margin-top: 30px;
+        font-weight: bold;
+        letter-spacing: 0.3em;
+        &-link{
+            transition: all 1s ease;
+        }
+        &-link:hover{
+            color: $color-gold;
+        }
+        @include pc{
+            font-size: 40px;
+        }
+    }
+    &__text{
+        font-size: 16px;
+        line-height: 2;
+    }
+    &__bottom{
+        height: 60px;
+        color: $color-white;
+        font-size: 12px;
+        line-height: 60px;
+        text-align: center;
+        background-color: $color-black;
+    }
+}
+
+/* --------------------------------------------------------
+  jQuery
+  -------------------------------------------------------- */
+
+// jQuery スムーススクロール トップへ戻る
+#js-scroll-top {
+    position: fixed;
+    bottom: 60px;
+    right: 40px;
+    z-index: 1;
+    }
+    .js-scroll-top__link {
+    background-color:rgba($color: $color-gold, $alpha: 0.9);
+    opacity: 0.5;
+    font-size: 35px;
+    padding: 5px 15px;
+    border-radius: 4px;
+    opacity: 0.8;
+    }
+    .fa-angle-up {
+        color: $color-white;
+    }
+  // end jQuery スムーススクロール トップへ戻る
+
+/* --------------------------------------------------------
+  ポップアップcss内容設定
+  -------------------------------------------------------- */
+// start ポップアップ
+.popup {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: .6s;
+  }
+  .popup.is-show {
+    opacity: 1;
+    visibility: visible;
+  }
+// ポップアップの設定
+  .popup-inner {
+    position: absolute;
+    // 真ん中設置
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 80%;
+    max-width: 550px;
+    height: auto;
+    border-radius: 10px;
+    padding: 29px 60px 90px 60px;
+    background-color: #fff;
+    z-index: 2;
+  }
+  .close-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .close-btn i {
+    font-size: 20px;
+    color: #333;
+  }
+  .black-background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.8);
+    z-index: 1;
+    cursor: pointer;
+  }
+// end ポップアップ
+// start contact 
+.contact {
+    &__title{
+        text-align: center;
+        font-size: 20px;
+        line-height: 34px;
+        padding-bottom: 30px;
+        border-bottom: 1px gray solid;
+        margin-bottom: 36px;
+    }
+    &__box {
+        max-width: 550px;
+        width: 100%;
+        margin: 20px auto 0;
+    }
+    &__item {
+        margin-bottom: 14px;
+        display: flex;
+        flex-direction: column;
+    }
+    &__label {
+        font-size: 16px;
+        color: $color-black;
+        margin-bottom: 14px;
+    }
+    &__note {
+        display: inline-block;
+        background-color: gray;
+        color: $color-white;
+        font-size: 10px;
+        height: 16px;
+        line-height: 10px;
+        padding: 2px 10px;
+        border-radius: 2px;
+        margin-left: 8px;
+    }
+    &__text-input {
+        width: 100%;
+        padding: 9px 10px;
+        border: 1px solid #707070;
+        font-size: 14px ;
+    }
+    &__inner{
+        margin-top: 64px;
+        text-align: center;
+    }
+    &__button{
+        width: 198px;
+        height: 42px;
+        text-align: center;
+        font-size: 16px;
+        border: 1px solid #707070;
+        color: $color-black;
+        font-size: 16px;
+        line-height: 42px;
+        &:hover{
+            opacity: 0.7;
+            cursor: pointer;
+            //変化時間
+            -webkit-transition: 0.6s;
+        }
+    }
+    // フォーム送信時に表示されるメッセージ
+    &__end-message {
+        display: none;
+        text-align: center;
+    }
+    &__false-message {
+        display: none;
+        text-align: center;
+    }
+}
+// 入力不完全の時ボタン押せないの状態
+.button--disabled[disabled] {
+opacity: 0.2;
+}
+// end contact
+// --------------------------------------------------------
+// jQuery Validation-Engine フォームバリデーション
+// --------------------------------------------------------
+.formError {
+    margin-top: -40px;
+    @include tab{
+        left: 55% !important;// jQueryのデフォルトの設定を上書き
+        margin-top: -25px ;
+        text-align: justify;
+    }
+  }
+//   .yournameformError{
+//         margin-top: -200px;
+//   }
+//   .contentformError{
+//         margin-top: -20px;
+//         left: 50% !important
+//   }
+  .formError .formErrorContent {
+    background: $color-gold;
+    color: white;
+    font-size: 13px;
+    border: none;
+    box-shadow: none;
+    padding: 8px 12px 6px;
+    border-radius: 4px;
+    line-height: 1.5;
+    padding: 5px;
+    margin: -10px;
+  }
+  // end jQuery Validation-Engine フォームバリデーション
+

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- javascript Swiiperスライト CDNでCSSを読み込み-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css" rel="stylesheet">
+    <!-- javascript AOSスクロールアニメーションの読み込み -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- fontawesomeの読み込み -->
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <!-- flatpockr 読み込み -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- Webフォントの読み込み -->
+    <link href=“https://fonts.googleapis.com/css?family=Noto+Serif+JP:400,700|Noto+Serif:400,700,700i&display=swap&subset=japanese” rel=“stylesheet”>
+    <!--ファビコン追加  -->
+    <link rel="icon" type="image/x-icon" href="../img/hp/logo/logo01.png">
+    <!-- ノーマライズCSSの読み込み -->
+    <link rel="stylesheet" href="css/stylesheet.min.css">
+    <link rel="stylesheet" href="css/destyle.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <meta name="description" content="石井花壇 | 温海温泉旅館【公式サイト】(カンプからの模写ページコーディング)">
+    <meta name="robots" content="noindex,nofollow" /> <!-- ポートフォリオ用模写コーディングサイト -->
+    <title>お部屋・石井花壇 | 温海温泉旅館【公式サイト】(カンプからの模写ページコーディング)</title>
+</head>
+<body>
+    <!-- start header -->
+    <header class="header">
+        <div class="header__container">
+            <div class="header__inner">
+                <h1 class="header__left">
+                        <a class="header__link" href="../index.html">
+                            <img class="header__logo" src="../img/hp/logo/logo02.png" width="40" height="40" alt="石井花壇logo" loading="lazy">
+                            <p class="header__title">石井花壇</p>
+                        </a>
+                </h1>
+                <!-- start pc nav -->
+                <nav class="header__right">
+                    <ul class="header__list">
+                        <li class="header__item"><a class="header__item-link" href="index.html">お部屋</a></li>
+                        <li class="header__item"><a class="header__item-link" href="../cuisine/index.html">お料理</a></li>
+                        <li class="header__item"><a class="header__item-link" href="../hotspring/index.html">温泉</a></li>
+                    </ul>
+                </nav>
+                <!-- end pc nav -->
+                <div class="header__btn">
+                    <button id="js-show-popup" class="header__btn-link"><img class="header__btn-img" src="../img/hp/icon/calender.png" width="24" height="24" alt="" loading="lazy">
+                    宿泊予約</ｂutton>
+                </div>
+                <!-- start ポップアップ内容 -->
+                <div class="popup" id="js-popup">
+                    <div class="popup-inner">
+                      <div class="close-btn" id="js-close-btn"><i class="fas fa-times"></i></div>
+                        <!-- モーダル内コンテンツ -->
+                        <h3 class="contact__title">宿泊予約</h3>
+                        <form id="js-form" class="contact__box" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScdZVY3ZudGXDOQEnFZUN_YsuTSyEtTelaY9zVOke3s1UcwqQ/formResponse" method="post" novalidate>
+                            <ul class="contact__list">
+                                <li class="contact__item">
+                                    <label for="yourname" class="contact__label">お名前
+                                        <span class="contact__note">必須</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="yourname"
+                                        name="entry.259368556"
+                                        placeholder="例：石井正悟"
+                                        required
+                                        class="contact__text-input validate[required]"
+                                        data-errormessage-value-missing="必須項目を入力してください"
+                                        data-prompt-position="topRight"
+                                    >
+                                </li>
+                                <li class="contact__item">
+                                    <label for="email" class="contact__label">メールアドレス
+                                        <span class="contact__note">必須</span>
+                                    </label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="entry.1710037595"
+                                        placeholder="例：Example@example.com"
+                                        required
+                                        class="contact__text-input validate[required,custom[email]]"
+                                        data-errormessage-value-missing="必須項目を入力してください"
+                                        data-errormessage-custom-error="メールアドレスの形式で入力してください"
+                                        data-prompt-position="topRight"
+                                    >
+                                </li>
+                                <li class="contact__item">
+                                    <label class="contact__label" for="selction">ご希望プラン（空いているプランのみ表示されます)</label>
+                                    <select class="contact__text-input" name="entry.1897710517" id="selction">
+                                        <option name="entry.1897710517" value="">プランを選択してください</option>
+                                        <option name="entry.1897710517"  value="①【期間限定】海辺の四季旬彩、贅沢美味懐石プラン">①【期間限定】海辺の四季旬彩、贅沢美味懐石プラン </option>
+                                        <option name="entry.1897710517"  value="②平日に優雅に楽しむ、特別宿泊プラン">②平日に優雅に楽しむ、特別宿泊プラン</option>
+                                        <option name="entry.1897710517"  value="③絶景貸切露天と個室会席を満喫できるファミリープラン">③絶景貸切露天と個室会席を満喫できるファミリープラン</option>
+                                    </select>
+                                </li>
+                                <li class="contact__item">
+                                    <label  class="contact__label" for="calendarTEST" class="contact__label">日時選択</label>
+                                    <input
+                                        name="entry.293424831"
+                                        class="contact__text-input"
+                                        type="text" id="calendarTEST"
+                                        placeholder="日時を選択してください">
+                                </li>
+                            </ul>
+                            <div class="contact__submit-wrapper">
+                                <div class="contact__inner">
+                                    <button type="submit" id="js-submit" class="contact__button button--disabled button--fadeout" disabled>送信する</button>
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+                    <div class="black-background" id="js-black-bg"></div>
+                </div>
+                <!-- end pc nav -->
+
+                <!-- start ハンバガーメニュー -->
+                <nav class="sp-nav">
+                    <ul class="sp-nav__list">
+                        <li class="sp-nav__item"><a href="index.html">お部屋</a></li>
+                        <li class="sp-nav__item"><a href="../cuisine/index.html">お料理</a></li>
+                        <li class="sp-nav__item"><a href="../hotspring/index.html">温泉</a></li>
+                        <li class="sp-nav__item"><a href="../inquiry/index.html">宿泊予約</a></li>
+                    </ul>
+                </nav>
+                <div class="navToggle">
+                    <span class="navToggle__span"></span>
+                    <span class="navToggle__span"></span>
+                    <span class="navToggle__span"></span>
+                </div>
+                <!-- end ハンバガーメニュー -->
+            </div>
+        </div>
+    </header>
+<main>
+    <!-- booking for sp -->
+    <section class="mv">
+        <h2 class="mv__title">お部屋</h2>
+        <div class="mv__btn">
+            <button class="mv__btn-link">
+                <p class="mv__btn-text"><a href="../inquiry/index.html">宿泊予約</a></p>
+            </button>
+        </div>
+
+    </section>
+    <!-- start about -->
+    <section class="about">
+        <div class="container">
+            <p class="about__map">
+                <a class="about__map-link" href="../index.html">トップ </a><span class="about__map-span">></span><a class="about__map-link" href="index.html">お部屋</a>
+            </p>
+            <h3 class="about__title" data-aos="fade">
+                創業より受け継がれてきた石井花壇の和の造り<br>
+                温海の雄大な絶景を堪能していただけるように設計された客室<br>
+                ゆるやかに流れ行く時間に身を委ねて<br>
+            </h3>
+            <ul class="about__list">
+                <li class="about__item" data-aos="fade">
+                    <div class="about__photo">
+                        <img class="about__img" src="../img/room/img/oheya01.png" srcset="../img/room/img/oheya01.png 1x, ../img/room/img/oheya01@2x.png" alt="room1" width="525" height="300" lazy="loading">
+                    </div>
+                    <div class="about__contain">
+                        <h3 class="about__top">温泉付き客室</h3>
+                        <p class="about__text">
+                            温海の源泉かけ流し露天風呂付き客室になります。<br>
+                            あなただけの上質な安らぎのひとときを。</p>
+                        <p class="about__add">＊部屋数に限りがございます。<br> ＊洗い場はないため、お体を先に大浴場でお流しになって頂く必要があります。</p>
+                    </div>
+                </li>
+                <li class="about__item" data-aos="fade" >
+                    <div class="about__photo-right">
+                        <img class="about__img" src="../img/room/img/oheya02.png" srcset="../img/room/img/oheya02.png 1x, ../img/room/img/oheya02@2x.png 2x" alt="room2" width="525" height="300" lazy="loading">
+                    </div>
+                    <div class="about__contain-right">
+                        <h3 class="about__top">庭園付き客室</h3>
+                        <p class="about__text">
+                            庭園付きの客室になります。 お庭を見ながら、<br>
+                            ほっとするひとときをお過ごしください。
+                        </p>
+                        <p class="about__add">
+                            ＊お庭は複数のお客様と囲む形になります。 ＊部屋数に限りがあります。<br>
+                            ＊ご希望の方は「お抹茶/500円」をルームサービスさせていただきます。<br>
+                        </p>
+                    </div>
+                </li>
+                <li class="about__item" data-aos="fade" >
+                    <div class="about__photo">
+                        <img class="about__img" src="../img/room/img/oheya03.png" srcset="../img/room/img/oheya03.png 1x, ../img/room/img/oheya03@2x.png 2x" alt="room3" width="525" height="300" lazy="loading">
+                    </div>
+                    <div class="about__contain">
+                        <h3 class="about__top">一般客室</h3>
+                        <p class="about__text">最もベーシックな客室になります。伝統の中にモダンさを取り入れた 内装となっており、とても過ごしやすくしていただけます。</p>
+                        <p class="about__add">＊全室お部屋より日本海を望むことができます。</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <!-- end about -->
+</main>
+<!-- start footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer__wrapper">
+            <ul class="footer__list">
+                <li class="footer__item"><a class="footer__item-link" href="index.html">お部屋</a></li>
+                <li class="footer__item"><a class="footer__item-link" href="../cuisine/index.html">お料理</a></li>
+                <li class="footer__item"><a class="footer__item-link" href="../hotspring/index.html">温泉</a></li>
+        </ul>
+            <div class="footer__contact">
+                <img class="footer__icon" src="../img/hp/logo/logo02.png" width="40" height="40" alt="">
+                <h2 class="footer__logo"><a class="footer__logo-link" href="../index.html">石井花壇</a></h2>
+                <p class="footer__text">〒000-0000  岐阜縣飛騨市xxx-x-xxxx</p>
+                <p class="footer__text"> TEL:000-0000-0000 FAX:000-0000-0001</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer__bottom">
+        <small class="footer__copy">Copyright © 石井花壇 All Rights Reserved.</small>
+    </div>
+</footer>
+
+<!----------------------------------jQuery---------------------------------->
+<!-- jQueryライブラリの読み込み-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- スライト CDNでjQueryを読み込み-->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script> -->
+<!-- jsファイルの読み込み-->
+<script src="../common/js/import_2.js"></script>
+<!-- jQuery jQuery-Validation-Engineフォームバリデーション の読み込み -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Validation-Engine/2.6.4/jquery-1.8.2.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Validation-Engine/2.6.4/languages/jquery.validationEngine-ja.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Validation-Engine/2.6.4/jquery.validationEngine.min.js" type="text/javascript" charset="utf-8"></script>
+<!-- jquery.inview　読み込み -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inview/1.0.0/jquery.inview.min.js"></script>
+<!-- start jQuery スムーズスクロール トップへ戻る -->
+<div id="js-scroll-top">
+    <a href="#" class="js-scroll-top__link">
+        <!-- <i class="fas fa-angle-double-up"></i> -->
+        <i class="fas fa-angle-up"></i>
+    </a>
+</div>
+<!-- end jQuery スムーズスクロール トップへ戻る -->
+<!-- 「AOS」JSの読込 -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<!-- for 「AOS」初期化する -->
+<script>
+    AOS.init({
+    offset: 300,
+    // 要素から見た位置にトリガーを指定(px)します。
+    duration: 1200,
+    // アニメーション時間をミリ秒単位で指定します。
+    easing: 'ease-in-sine',
+    // easingを指定します。
+    delay: 0,
+    // アニメーションをミリ秒単位で遅らせます。
+    once:true
+    // アニメーションを1回のみにする場合trueを指定します。
+    // disable: 'mobile',
+    // disable: window.innerWidth < 900
+    });
+</script>
+
+
+<!-- flatpickr 機能設定 -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
+<script>
+    flatpickr.localize(flatpickr.l10ns.ja);
+    flatpickr('#calendarTEST', {
+        minDate: "today",
+        // 基本的にID（又はクラス名）を指定した後に、カンマ区切りでオプションを羅列していくだけでどんどん機能が追加できます。
+        mode: "range"
+
+    });
+</script>
+<!--flatpickr 外観設定-白の枠あり -->
+<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/airbnb.css">
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
